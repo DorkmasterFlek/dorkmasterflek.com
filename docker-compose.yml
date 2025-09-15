@@ -1,0 +1,38 @@
+services:
+  nginx-proxy:
+    image: nginxproxy/nginx-proxy:1.8
+    container_name: nginx-proxy
+    restart: always
+    ports:
+      - 443:443
+      - 80:80
+    networks:
+      - smrpg
+    volumes:
+      - certs:/etc/nginx/certs
+      - html:/usr/share/nginx/html
+      - vhost:/etc/nginx/vhost.d
+      - /run/user/1000/docker.sock:/tmp/docker.sock:ro
+  acme-companion:
+    image: nginxproxy/acme-companion:2.6
+    networks:
+      - smrpg
+    volumes:
+      - certs:/etc/nginx/certs
+      - html:/usr/share/nginx/html
+      - vhost:/etc/nginx/vhost.d
+      - acme:/etc/acme.sh
+      - /run/user/1000/docker.sock:/var/run/docker.sock:ro
+    depends_on:
+      - nginx-proxy
+
+networks:
+  smrpg:
+    name: smrpg_web_randomizer_default
+    external: true
+
+volumes:
+  certs:
+  html:
+  vhost:
+  acme:
