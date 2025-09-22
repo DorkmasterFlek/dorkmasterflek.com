@@ -17,6 +17,8 @@ services:
     image: nginxproxy/acme-companion:2.6
     networks:
       - smrpg
+    env_file:
+      - ./.env
     volumes:
       - certs:/etc/nginx/certs
       - html:/usr/share/nginx/html
