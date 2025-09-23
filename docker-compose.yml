@@ -15,6 +15,7 @@ services:
       - /run/user/1000/docker.sock:/tmp/docker.sock:ro
   acme-companion:
     image: nginxproxy/acme-companion:2.6
+    restart: always
     networks:
       - smrpg
     env_file:
