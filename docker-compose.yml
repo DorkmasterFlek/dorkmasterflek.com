@@ -13,6 +13,8 @@ services:
       - html:/usr/share/nginx/html
       - vhost:/etc/nginx/vhost.d
       - /run/user/1000/docker.sock:/tmp/docker.sock:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
   acme-companion:
     image: nginxproxy/acme-companion:2.6
     restart: always
@@ -26,6 +28,8 @@ services:
       - vhost:/etc/nginx/vhost.d
       - acme:/etc/acme.sh
       - /run/user/1000/docker.sock:/var/run/docker.sock:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     depends_on:
       - nginx-proxy
 
