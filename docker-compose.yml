@@ -14,6 +14,7 @@ services:
       - vhost:/etc/nginx/vhost.d
       - /run/user/1000/docker.sock:/tmp/docker.sock:ro
       - /etc/localtime:/etc/localtime:ro
+      - ./nginx.conf:/etc/nginx/conf.d/my_proxy.conf:ro
   acme-companion:
     image: nginxproxy/acme-companion:2.6
     restart: always
