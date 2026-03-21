@@ -12,7 +12,7 @@ services:
       - certs:/etc/nginx/certs
       - html:/usr/share/nginx/html
       - vhost:/etc/nginx/vhost.d
-      - /run/user/1000/docker.sock:/tmp/docker.sock:ro
+      - /var/run/docker.sock:/tmp/docker.sock:ro
       - /etc/localtime:/etc/localtime:ro
       - ./nginx.conf:/etc/nginx/conf.d/my_proxy.conf:ro
   acme-companion:
@@ -27,7 +27,7 @@ services:
       - html:/usr/share/nginx/html
       - vhost:/etc/nginx/vhost.d
       - acme:/etc/acme.sh
-      - /run/user/1000/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/localtime:/etc/localtime:ro
     depends_on:
       - nginx-proxy
