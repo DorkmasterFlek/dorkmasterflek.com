@@ -8,6 +8,7 @@ services:
       - 80:80
     networks:
       - smrpg
+      - smrpg-beta
     volumes:
       - certs:/etc/nginx/certs
       - html:/usr/share/nginx/html
