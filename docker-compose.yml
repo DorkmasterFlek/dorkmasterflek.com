@@ -8,7 +8,6 @@ services:
       - 80:80
     networks:
       - smrpg
-      - smrpg-beta
     volumes:
       - certs:/etc/nginx/certs
       - html:/usr/share/nginx/html
@@ -21,7 +20,6 @@ services:
     restart: always
     networks:
       - smrpg
-      - smrpg-beta
     env_file:
       - ./.env
     volumes:
@@ -37,9 +35,6 @@ services:
 networks:
   smrpg:
     name: smrpg_web_randomizer_default
-    external: true
-  smrpg-beta:
-    name: smrpg_web_randomizer_beta_default
     external: true
 
 volumes:
