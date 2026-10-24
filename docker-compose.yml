@@ -4,31 +4,15 @@ services:
     container_name: nginx-proxy
     restart: always
     ports:
-      - 443:443
       - 80:80
     networks:
       - smrpg
     volumes:
-      - certs:/etc/nginx/certs
       - html:/usr/share/nginx/html
       - vhost:/etc/nginx/vhost.d
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - /etc/localtime:/etc/localtime:ro
       - ./nginx.conf:/etc/nginx/conf.d/my_proxy.conf:ro
-  acme-companion:
-    image: nginxproxy/acme-companion:2.6
-    restart: always
-    networks:
-      - smrpg
-    env_file:
-      - ./.env
-    volumes_from:
-      - nginx-proxy
-    volumes:
-      - acme:/etc/acme.sh
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    depends_on:
-      - nginx-proxy
 
 networks:
   smrpg:
@@ -36,7 +20,5 @@ networks:
     external: true
 
 volumes:
-  certs:
   html:
   vhost:
-  acme:
