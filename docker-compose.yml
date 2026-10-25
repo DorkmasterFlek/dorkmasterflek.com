@@ -7,6 +7,7 @@ services:
       - 80:80
     networks:
       - smrpg
+      - smrpg_v8
     volumes:
       - html:/usr/share/nginx/html
       - vhost:/etc/nginx/vhost.d
@@ -17,6 +18,9 @@ services:
 networks:
   smrpg:
     name: smrpg_web_randomizer_default
+    external: true
+  smrpg_v8:
+    name: smrpg_web_randomizer_v8_default
     external: true
 
 volumes:
